@@ -1,5 +1,15 @@
+require "./Piece.rb"
+require "./piece_modules.rb"
+require "./Queen.rb"
+require "./Rook.rb"
+require "./Bishop.rb"
+require "./Board.rb"
+require "./King.rb"
+require "./Knight.rb"
+require "./Pawn.rb"
+
 class Game
-  attr_ accessor :board
+  attr_accessor :board
   def initialize
     @board = Board.new
     @player1, @player2 = get_players
@@ -8,6 +18,7 @@ class Game
 
   def play
     until game_over?
+      system('clear')
       board.print
       make_move(current_player)
       toggle_players
@@ -38,14 +49,10 @@ class Game
   def make_move
   end
 
-
-
-
 end
 
-class Player
-  attr_reader :name # At minimum
-end
+Board.new.print_board
+
 
 =begin
 
@@ -63,3 +70,4 @@ use sliding_piece and static piece as Modules
 
 
 Game Class
+=end
