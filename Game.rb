@@ -7,6 +7,8 @@ require "./Board.rb"
 require "./King.rb"
 require "./Knight.rb"
 require "./Pawn.rb"
+require 'ap'
+require 'pp'
 
 class Game
   attr_accessor :board
@@ -51,7 +53,11 @@ class Game
 
 end
 
-Board.new.print_board
+b = Board.new
+b.print_board
+p b.pieces[14].class
+pp b.pieces[14].possible_moves.to_a
+
 
 
 =begin

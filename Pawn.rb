@@ -1,4 +1,4 @@
 class Pawn < Piece
-  # MOVE_MODIFIERS = make_move_modifiers
+  MOVE_MODIFIERS = [0,0]
 
 end
