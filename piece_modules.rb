@@ -43,6 +43,15 @@ module SlidingPiece
     end
   end
 
+  def unblock_helper(stretch, blocking_index)
+    if stretch.include?(blocking_index)
+      stretch_block_index = stretch.index(blocking_index)
+      stretch_block_index -= 1 if @board.find_piece(blocking_index).color == self.color
+
+      stretch[0..stretch_block_index] unless stretch_block_index == -1
+    end
+  end
+
   def filter_out_blocked_locations(possible_moves)
     blocking_indices = blocking_locations(possible_moves)
     #possible moves
@@ -55,15 +64,8 @@ module SlidingPiece
     unblocked_stretches = []
     possible_moves.each do |stretch|
       blocking_indices.each do |blocking_index|
-        p stretch
-        p blocking_index
-        if stretch.include?(blocking_index)
-          puts "stretch block index"
-          stretch_block_index = stretch.index(blocking_index)
-          stretch_block_index -= 1 if @board.find_piece(blocking_index).color == self.color
-
-          unblocked_stretches << stretch[0..stretch_block_index] unless stretch_block_index == -1
-        end
+        unblocked_stretch = unblock_helper(stretch, blocking_index)
+        unblocked_stretches << unblocked_stretch unless unblocked_stretch.nil?
       end
     end
     unblocked_stretches
