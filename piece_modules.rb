@@ -19,10 +19,7 @@ module SlidingPiece
     filter(possible_moves)
   end
 
-  # def filter(possible_moves)
-#     no_board_edges = filter_out_board_edges(possible_moves)
-#     no_blocked_locations = filter_out_blocked_locations(no_board_edges)
-#   end
+  # filter(possible_moves) is in Piece.rb
 
   def filter_out_board_edges(possible_moves)
     inbound_moves = possible_moves.map do |move_stretch|
@@ -54,13 +51,6 @@ module SlidingPiece
 
   def filter_out_blocked_locations(possible_moves)
     blocking_indices = blocking_locations(possible_moves)
-    #possible moves
-    # [[[6, 2], [5, 1], [4, 0]],
-#      [[6, 3], [5, 3], [4, 3], [3, 3], [2, 3], [1, 3], [0, 3]],
-#      [[6, 4], [5, 5], [4, 6], [3, 7]],
-#      [[7, 2], [7, 1], [7, 0]],
-#      [[7, 4], [7, 5], [7, 6], [7, 7]]]
-    # block indices [[6, 2], [6, 3], [6, 4], [7, 2], [7, 4]]
     unblocked_stretches = []
     possible_moves.each do |stretch|
       blocking_indices.each do |blocking_index|

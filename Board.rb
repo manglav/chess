@@ -21,7 +21,9 @@ class Board
   end
 
   def find_piece(index)
-    @pieces.select { |piece| piece.pos == index }[0]
+    piece = @pieces.select { |piece| piece.pos == index }[0]
+    return nil unless piece
+    piece
   end
 
   def create_pieces

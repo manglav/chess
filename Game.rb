@@ -52,11 +52,11 @@ class Game
 
 end
 
-m = 14
+m = 0
 b = Board.new
 b.print_board
 p b.pieces[m].class
-b.pieces[m].pos = [4,4]
+b.pieces[m].pos = [2,4]
 b.print_board
 pp b.pieces[m].possible_moves.to_a
 
