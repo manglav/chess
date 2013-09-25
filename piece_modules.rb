@@ -19,10 +19,10 @@ module SlidingPiece
     filter(possible_moves)
   end
 
-  def filter(possible_moves)
-    no_board_edges = filter_out_board_edges(possible_moves)
-    no_blocked_locations = filter_out_blocked_locations(no_board_edges)
-  end
+  # def filter(possible_moves)
+#     no_board_edges = filter_out_board_edges(possible_moves)
+#     no_blocked_locations = filter_out_blocked_locations(no_board_edges)
+#   end
 
   def filter_out_board_edges(possible_moves)
     inbound_moves = possible_moves.map do |move_stretch|
@@ -68,7 +68,7 @@ module SlidingPiece
         unblocked_stretches << unblocked_stretch unless unblocked_stretch.nil?
       end
     end
-    unblocked_stretches
+    unblocked_stretches.flatten(1)
   end
 
 end

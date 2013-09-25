@@ -7,7 +7,6 @@ require "./Board.rb"
 require "./King.rb"
 require "./Knight.rb"
 require "./Pawn.rb"
-require 'ap'
 require 'pp'
 
 class Game
@@ -53,10 +52,13 @@ class Game
 
 end
 
+m = 14
 b = Board.new
 b.print_board
-p b.pieces[14].class
-pp b.pieces[14].possible_moves.to_a
+p b.pieces[m].class
+b.pieces[m].pos = [4,4]
+b.print_board
+pp b.pieces[m].possible_moves.to_a
 
 
 
