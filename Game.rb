@@ -22,6 +22,7 @@ class Game
       system('clear')
       board.print
       make_move(current_player)
+
       toggle_players
     end
 
@@ -38,6 +39,20 @@ class Game
     puts "You won #{player.name}"
   end
 
+  def self.is_color_checked?(color, board)
+    @board = board
+    opposing_color = Board::swap_color(color)
+    opposing_pieces = @board.get_pieces(opposing_color)
+    my_king_pos = @board.find_king(color).pos
+    all_opposing_moves = []
+    opposing_pieces.each do |piece|
+      all_opposing_moves << piece.possible_moves
+    end
+    all_opposing_moves = all_opposing_moves.flatten.each_slice(2).to_a
+    all_opposing_moves.include?(my_king_pos)
+  end
+
+
 
   def toggle_players
     if @current_player == @player1
@@ -52,13 +67,16 @@ class Game
 
 end
 
-m = 0
+m = 1
 b = Board.new
-b.print_board
 p b.pieces[m].class
-b.pieces[m].pos = [2,4]
+p b.pieces[m].color
+b.make_move([0,0],[5,0])
+p b.pieces[m].possible_moves
 b.print_board
-pp b.pieces[m].possible_moves.to_a
+p Game::is_color_checked?(:white, b)
+
+
 
 
 
